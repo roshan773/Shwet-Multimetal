@@ -1,0 +1,627 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Assets/Images/fevicon.jpg' %}" type="jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Shwet Multimetal </title>
+    <style>
+        /*Css code for navigation*/
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(to right, #0072ff, #003366);
+        }
+
+        .nav-title img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav {
+            width: 100%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: transparent;
+            padding: -10px;
+        }
+
+        .nav-list {
+            font-size: 15px;
+        }
+
+        .nav>.nav-header {
+            flex: 0.95;
+            padding-left: 1rem;
+        }
+
+        .nav>.nav-header>.nav-title {
+            font-size: 10px;
+            color: rgb(15, 3, 3);
+        }
+
+        .nav>.nav-list {
+            margin-right: 10px;
+            gap: 2rem;
+            display: flex;
+        }
+
+        .nav>.nav-list>li {
+            list-style: none;
+        }
+
+        .nav>.nav-list>li a {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav>#nav-check {
+            display: none;
+        }
+
+        i {
+            margin-right: 5px;
+        }
+
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            background-color: #003366;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            margin-left: -35px;
+            margin-top: 10px;
+            width: 125px;
+        }
+
+        .dropdown-menu li {
+            padding: 8px 12px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .dropdown-menu li a {
+            color: #003366;
+            margin-left: -50px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu li {
+            cursor: pointer;
+        }
+
+        .dropdown-menu li i {
+            margin-left: 15px;
+            /* Add space between icon and text */
+        }
+
+        #list {
+            margin-right: 15px;
+        }
+
+        /* css for product */
+        .product {
+            background-color: #ffffff;
+            padding: 10px;
+        }
+
+        .product h1 {
+            font-size: 30px;
+            color: #003366;
+        }
+
+        .product-wrapper {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            gap: 2rem;
+            padding-bottom: 10px;
+        }
+
+        .item {
+            border: 1px solid #ccc;
+            padding-bottom: 10px;
+            border-radius: 9px;
+            background-color: #ffffff;
+        }
+
+        .item:hover {
+            box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .item p {
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .item img {
+            height: 140px;
+            width: 150px;
+            object-fit: fill;
+            border: 1px solid #ccc;
+            border-radius: 0 0 9px 9px;
+        }
+
+        /* CSS for product card */
+        .product-card {
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .card {
+            border: 1px solid #ccc;
+            padding: 15px;
+            display: flex;
+            gap: 2rem;
+        }
+
+        .card:hover {
+            box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .block1>img {
+            width: 500px;
+            height: 400px;
+            flex: 5;
+        }
+
+        .block2 {
+            flex: 5;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: left;
+            margin-top: -20px;
+        }
+
+        .block2 h1 {
+            font-size: 30px;
+        }
+
+        .price {
+            font-weight: bold;
+            font-size: 20px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th,
+        td {
+            padding: 5px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        .button {
+            background-color: #ffffff;
+            padding: 10px 20px;
+            border: 1px solid #003366;
+            color: #003366;
+            border-radius: 9px;
+            cursor: pointer;
+            transition: all .3s ease-in-out;
+        }
+
+        .button:hover {
+            background-color: #003366;
+            color: #ffffff;
+            border: 1px solid #003366;
+        }
+
+        /*Css code for Footer section*/
+        .footer {
+            background-color: transparent;
+            color: #fff;
+            display: flex;
+            padding: 20px;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer-info {
+            text-align: center;
+        }
+
+        .Footer-info p {
+            margin: 5px 0;
+        }
+
+        .footer-content,
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content,
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content,
+        .footer-links a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .footer,
+        .h4 {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ffffff;
+        }
+
+        .Icon {
+            background-color: transparent;
+            padding: 10px;
+        }
+
+        .Icon a {
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .h4 {
+            background-color: tr;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .nav>.nav-btn {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding-top: 0.2rem;
+            }
+
+            .nav>.nav-btn>label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                padding: 13px;
+            }
+
+            .nav>.nav-btn>label>span {
+                background-color: white;
+                display: block;
+                width: 25px;
+                height: 4px;
+                border: 1px solid #003366;
+                margin-bottom: 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .nav-list {
+                background: linear-gradient(to right, #0072ff, #003366);
+                position: absolute;
+                color: #000;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                height: 0;
+                transition: all 0.3s ease-in;
+                top: 28px;
+                left: 0;
+                overflow: hidden;
+
+            }
+
+            .nav>.nav-list>li a {
+                color: white;
+                font-weight: 1000;
+            }
+
+            .nav>.nav-list>li a:hover {
+                text-decoration: underline;
+            }
+
+            .nav>.login-btn {
+                margin-right: 40px;
+            }
+
+            .nav>.nav-list>li {
+                color: #ffffff;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .nav>#nav-check:checked~.nav-list {
+                height: calc(100vh - 10px);
+            }
+
+            .nav-list {
+                font-size: 15px;
+            }
+
+            /* CSS for product */
+            .product h1 {
+                font-size: 20px;
+            }
+
+            .product p {
+                font-size: 15px;
+                color: grey;
+            }
+
+            .item {
+                height: auto;
+                width: 150px;
+                border: none;
+            }
+
+            .item:hover {
+                box-shadow: none;
+            }
+
+            .item img {
+                height: 100px;
+                width: 100px;
+            }
+
+            .item p {
+                color: #000;
+            }
+
+            .product-wrapper {
+                overflow: scroll;
+                overflow-y: hidden;
+            }
+
+            .product-wrapper::-webkit-scrollbar {
+                width: 12px;
+                height: 0px;
+            }
+
+            .product-wrapper::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+            }
+
+            /* CSS for product Card */
+            .product-card {
+                background-color: #ffffff;
+                padding: 15px;
+            }
+
+            .block1 .image {
+                height: 200px;
+                width: 200px;
+            }
+
+            .other-links {
+                overflow-x: scroll;
+                width: 100%;
+            }
+
+            .card {
+                display: flex;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .card img {
+                height: 100px;
+                width: 100px;
+            }
+
+            .button {
+                margin-bottom: 10px;
+            }
+
+            /*Css code for footer section*/
+            .footer {
+                flex-direction: column;
+                text-align: center;
+                margin-top: -0px;
+            }
+
+            .footer-info,
+            .footer-content {
+                margin: 10px 0;
+            }
+
+            .Footer-info p,
+            .Footer-content,
+            .footer-links {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--Navigation Section-->
+    <section class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                <img src="{% static 'Assets/Images/Logo.png' %}">
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <ul class="nav-list">
+            <li><a href="{% url 'Shwet_Multimetal_Company:home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:product' %}"><i class="fas fa-shopping-cart"></i> Product</a>
+            </li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:about' %}"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:contact' %}"><i class="fas fa-phone"></i> Contact</a></li>
+
+            <!-- Dropdown Menu -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fas fa-user"></i> Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'userauths:logout' %}"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Product section -->
+    <section class="product">
+        <h1>Hastelloy Wire</h1>
+        <p>Offering you a complete choice of products which include 0.25 Mm Hastelloy C22 /276 Wire and Hastelloy C276
+            Wire.</p>
+        <hr>
+        <div class="product-container">
+            <div class="product-wrapper">
+                <div class="item">
+                    <p>Hastelloy C22/276 <br>wire</p><img
+                        src="{% static 'Assets/Images/Hastelloy Wire/Hastelloy Wire.jpg' %}"></a>
+                </div>
+                <div class="item">
+                    <p>hastealloy-wire-<br>c-276</p><img
+                        src="{% static 'Assets/Images/Hastelloy Wire/hastealloy-wire-c-276.jpg' %}"></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Card -->
+    <section class="product-card">
+        <form id="product-form" action="{% url 'Shwet_Multimetal_Company:contact' %}" method="post">
+            {% csrf_token %}
+            <div class="card">
+                <div class="block1">
+                    <img src="{% static 'Assets/Images/Hastelloy Wire/Hastelloy Wire.jpg' %}" class="image">
+                </div>
+                <div class="block2">
+                    <h1>Hastelloy C22/276 wire</h1>
+                    <p class="price">₹ 2500/kg</p>
+                    <div class="description">
+                        <h4>Product Description :-</h4>
+                        <table>
+                            <tr>
+                                <td>Material</td>
+                                <td>Hastelloy</td>
+                            </tr>
+                            <tr>
+                                <td>Application</td>
+                                <td>Industrial</td>
+                            </tr>
+                            <tr>
+                                <td>Thickness</td>
+                                <td>0.25 mm</td>
+                            </tr>
+                            <tr>
+                                <td>Length</td>
+                                <td>25m</td>
+                            </tr>
+                            <tr>
+                                <td>Packaging Type</td>
+                                <td>Roll</td>
+                            </tr>
+                            <tr>
+                                <td>Grade</td>
+                                <td>C22</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <button class="button">Inquiry <i class="fas fa-question-circle"></i></button></p>
+                </div>
+            </div>
+            <br>
+            <div class="card">
+                <div class="block1">
+                    <img src="{% static 'Assets/Images/Hastelloy Wire/hastealloy-wire-c-276.jpg' %}" class="image">
+                </div>
+                <div class="block2">
+                    <h1>hastealloy-wire-c-276</h1>
+                    <p class="price">₹ 3,000/kg</p>
+                    <div class="description">
+                        <h4>Product Description :-</h4>
+                        <table>
+                            <tr>
+                                <td>Material</td>
+                                <td>Hastelloy</td>
+                            </tr>
+                            <tr>
+                                <td>Application</td>
+                                <td>Industrial</td>
+                            </tr>
+                            <tr>
+                                <td>Thickness</td>
+                                <td>1-2mm</td>
+                            </tr>
+                            <tr>
+                                <td>Length</td>
+                                <td>25m</td>
+                            </tr>
+                            <tr>
+                                <td>Hardness</td>
+                                <td>50-60HRC</td>
+                            </tr>
+                            <tr>
+                                <td>Packaging Type</td>
+                                <td>Roll</td>
+                            </tr>
+                            <tr>
+                                <td>Grade</td>
+                                <td>C276</td>
+                            </tr>
+                        </table>
+                    </div>
+                    <br>
+                    <button class="button">Inquiry <i class="fas fa-question-circle"></i></button></p>
+                </div>
+            </div>
+        </form>
+    </section>
+
+    <!--Footer section-->
+    <section class="footer">
+        <div class="footer-info">
+            <p>Contact Information:</p>
+            <p>Email: Sagarshet85@gmail.com</p>
+            <p>Phone: 9769415003</p>
+        </div>
+    </section>
+    <div class="h4">
+        &copy; 2024 All rights are reserved to Shwet Multimetals Company <br>
+        Developed and Maintained by:<br>
+        Pakhre Roshan<br>
+        Viraj Matekar
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Toggle dropdown menu when clicking on Account
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle();
+        });
+    });
+</script>
+
+</html>

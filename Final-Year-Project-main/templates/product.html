@@ -1,0 +1,930 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Assets/Images/fevicon.jpg' %}" type="jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Shwet Multimetal </title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            font-family: Arial, Helvetica, sans-serif;
+            background: -webkit-gradient(linear, left top, right top, from(#0072ff), to(#003366));
+            background: -o-linear-gradient(left, #0072ff, #003366);
+            background: linear-gradient(to right, #0072ff, #003366);
+        }
+
+        .nav-title img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav {
+            width: 100%;
+            background: transparent;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            background: -webkit-gradient(linear, left top, right top, from(#0072ff), to(#003366));
+            background: -o-linear-gradient(left, #0072ff, #003366);
+            background: linear-gradient(to right, #0072ff, #003366);
+        }
+
+        .nav-list {
+            font-size: 15px;
+        }
+
+        .nav>.nav-header {
+            -webkit-box-flex: 0.95;
+            -ms-flex: 0.95;
+            flex: 0.95;
+            padding-left: 1rem;
+        }
+
+        .nav>.nav-header>.nav-title {
+            font-size: 10px;
+            color: rgb(15, 3, 3);
+        }
+
+        .nav>.nav-list {
+            margin-right: 10px;
+            gap: 2rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .nav>.nav-list>li {
+            list-style: none;
+        }
+
+        .nav>.nav-list>li a {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav>#nav-check {
+            display: none;
+        }
+
+        i {
+            margin-right: 5px;
+        }
+
+        /* Styles for Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            background-color: #003366;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            margin-left: -35px;
+            margin-top: 10px;
+            width: 125px;
+        }
+
+        .dropdown-menu li {
+            padding: 8px 12px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .dropdown-menu li a {
+            color: #003366;
+            margin-left: -50px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu li {
+            cursor: pointer;
+        }
+
+        .dropdown-menu li i {
+            margin-left: 15px;
+            /* Add space between icon and text */
+        }
+
+        #list {
+            margin-right: 15px;
+        }
+
+        /*Css code for the product section*/
+        .product {
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .heading img {
+            width: 100%;
+            height: 400px;
+        }
+
+        .slider-container {
+            width: 100%;
+            overflow: scroll;
+            overflow-y: hidden;
+            margin-top: -100px;
+        }
+
+        .slider-container::-webkit-scrollbar {
+            width: 10px;
+            height: 2px;
+        }
+
+        .slider-container::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 6px;
+        }
+
+        .slider-wrapper {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-transition: -webkit-transform 0.3s ease-in-out;
+            transition: -webkit-transform 0.3s ease-in-out;
+            -o-transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out;
+            transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
+            padding: 10px;
+            margin-right: 20px;
+            gap: 2.5rem;
+        }
+
+        .slider-item h3 {
+            text-align: center;
+        }
+
+        .slider-item a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .slider-item {
+            border-radius: 4px;
+            background-color: #ffffff;
+            margin-bottom: -10px;
+        }
+
+        .slider-item img {
+            width: 200px;
+            height: 150px;
+            margin-top: -0px;
+            border: 2px solid #003366;
+        }
+
+        .slider-item p {
+            text-align: center;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        /*Main Product Section*/
+        .button {
+            background-color: #ffffff;
+            border: 1px solid #003366;
+            padding: 10px 20px;
+            border-radius: 5px;
+            width: 20%;
+            cursor: pointer;
+            text-decoration: none;
+            color: #003366;
+        }
+
+
+        .product-section {
+            background-color: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+            overflow-x: scroll;
+            padding: 25px;
+            border: 1px solid #ccc;
+            -webkit-box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.4);
+            box-shadow: 0 0px 10px 0 rgba(0, 0, 0, 0.4);
+        }
+
+        .product-section::-webkit-scrollbar {
+            width: 10px;
+            height: 2px;
+        }
+
+        .product-section h2 {
+            margin: 0 auto;
+            color: #003366;
+            text-align: center;
+        }
+
+        #subsection {
+            padding-bottom: 20px;
+            width: 100%;
+        }
+
+        .subsection::-webkit-scrollbar {
+            width: 10px;
+            height: 2px;
+        }
+
+        .subsection::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 8px;
+        }
+
+        #subsection-wrapper {
+            overflow: scroll;
+            overflow-x: scroll;
+        }
+
+        .subsection-wrapper {
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 10px;
+            gap: 2.5rem;
+        }
+
+        .subsection-items p {
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        .subsection-items img {
+            height: 150px;
+            width: 200px;
+            border: 2px solid #003366;
+            -o-object-fit: fill;
+            object-fit: fill;
+        }
+
+        .subsection-items {
+            background-color: #ffffff;
+        }
+
+        /* css for product card */
+        .product-container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-orient: horizontal;
+            -webkit-box-direction: normal;
+            -ms-flex-direction: row;
+            flex-direction: row;
+            gap: 2rem;
+            overflow: scroll;
+            overflow-y: hidden;
+            overflow-x: hidden;
+        }
+
+        .product-card::-webkit-scrollbar {
+            width: 2px;
+        }
+
+        .product-card::-webkit-scrollbar-thumb {
+            background-color: #ccc;
+            border-radius: 8px;
+        }
+
+        .product-card {
+            width: 500px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .product-card img {
+            height: 200px;
+            width: 200px;
+            margin: 0 auto 15px;
+            display: block;
+        }
+
+        .product-card h2 {
+            color: #333;
+            font-size: 20px;
+        }
+
+        /*Css code for Footer section*/
+        .footer {
+            background: transparent;
+            color: #fff;
+            padding: 20px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .footer-info {
+            text-align: center;
+        }
+
+        .Footer-info p {
+            margin: 5px 0;
+        }
+
+        .footer-content,
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content,
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content,
+        .footer-links a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .footer,
+        .h4 {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ffffff;
+        }
+
+        .Icon {
+            background-color: transparent;
+            padding: 10px;
+        }
+
+        .Icon a {
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .h4 {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        @media (max-width: 600px) {
+
+            .nav>.nav-btn {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding-top: 0.2rem;
+            }
+
+            .nav>.nav-btn>label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                padding: 13px;
+            }
+
+            .nav>.nav-btn>label>span {
+                background-color: white;
+                display: block;
+                width: 25px;
+                height: 4px;
+                border: 1px solid #003366;
+                margin-bottom: 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .nav-list {
+                background: -webkit-gradient(linear, left top, right top, from(#0072ff), to(#003366));
+                background: -o-linear-gradient(left, #0072ff, #003366);
+                background: linear-gradient(to right, #0072ff, #003366);
+                position: absolute;
+                color: #000;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                height: 0;
+                -webkit-transition: all 0.3s ease-in;
+                -o-transition: all 0.3s ease-in;
+                transition: all 0.3s ease-in;
+                top: 28px;
+                left: 0;
+                overflow: hidden;
+
+            }
+
+            .nav>.nav-list>li a {
+                color: white;
+                font-weight: 1000;
+            }
+
+            .nav>.nav-list>li a:hover {
+                text-decoration: underline;
+            }
+
+            .search-bar {
+                margin-right: 50px;
+                width: 50%;
+            }
+
+            .search {
+                width: 80%;
+            }
+
+            .nav>.nav-list>li {
+                color: #ffffff;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .nav>#nav-check:checked~.nav-list {
+                height: calc(100vh - 10px);
+            }
+
+            .nav-list {
+                font-size: 15px;
+            }
+
+            /*css code for product Section*/
+            .product {
+                background-color: #ffffff;
+                margin: 0;
+                padding: 0;
+            }
+
+            .heading img {
+                width: 100%;
+                -o-object-fit: fill;
+                object-fit: fill;
+                height: 200px;
+            }
+
+            .slider-container {
+                width: 100%;
+                overflow-y: hidden;
+            }
+
+            .slider-wrapper>.slider-item p {
+                bottom: -100px;
+                font-weight: bolder;
+            }
+
+            .slider-item {
+                margin-top: 30px;
+            }
+
+            .slider-item img {
+                width: 150px;
+                height: 100px;
+            }
+
+            .slider-item p {
+                font-size: 14px;
+            }
+
+            /*css for main product*/
+            .button {
+                background-color: #ffffff;
+                text-decoration: none;
+                border: 1px solid #003366;
+                border-radius: 8px;
+                color: #003366;
+                cursor: pointer;
+                margin: 10px;
+            }
+
+            .button>a {
+                text-decoration: none;
+                color: #003366;
+            }
+
+            .subsection-wrapper {
+                width: 100%;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                overflow: scroll;
+                overflow-y: hidden;
+            }
+
+            .subsection-items img {
+                height: 150px;
+                width: 150px;
+            }
+
+            .subsection {
+                overflow: scroll;
+                overflow-y: hidden;
+            }
+
+            .subsection-wrapper::-webkit-scrollbar {
+                width: 12px;
+                height: 0px;
+            }
+
+            .subsection-wrapper::-webkit-scrollbar-thumb {
+                background-color: #ccc;
+                display: none;
+            }
+
+            .subsection-items img {
+                width: 100px;
+                height: 100px;
+            }
+
+            .subsection-items p {
+                font-size: 14px;
+            }
+
+            .product-section {
+                padding: 30px;
+            }
+
+            .product-section h2 {
+                font-size: 19px;
+            }
+
+            .product-section p {
+                font-size: 14px;
+            }
+
+            /* Css code for product card */
+            .product-container {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .product-card img {
+                width: 140px;
+                height: 120px;
+            }
+
+            .product-card {
+                width: 400px;
+                height: 500px;
+                overflow: scroll;
+                overflow-x: hidden;
+            }
+
+            /*Css code for footer section*/
+            .footer {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-info,
+            .footer-content {
+                margin: 10px 0;
+            }
+
+            .Footer-info p,
+            .Footer-content,
+            .footer-links {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--Navigation Section-->
+    <section class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                <img src="{% static 'Assets/Images/Logo.png' %}">
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <ul class="nav-list">
+            <li><a href="{% url 'Shwet_Multimetal_Company:home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:product' %}"><i class="fas fa-shopping-cart"></i> Product</a>
+            </li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:about' %}"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:contact' %}"><i class="fas fa-phone"></i> Contact</a></li>
+
+            <!-- Dropdown Menu -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fas fa-user"></i> Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'userauths:logout' %}"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!--Products Section-->
+    <section class="product">
+        <div class="heading">
+            <div class="image"><img src="{% static 'Assets/Images/factory_background.jpg' %}"></div>
+        </div>
+
+        <!--Slider Section-->
+        <div class="slider-container">
+            <div class="slider-wrapper">
+                <div class="slider-item">
+                    <p>Nickle Strip</p><a href="#subsection1"><img
+                            src="{% static 'Assets/Images/Nickel Strip/Nickel_Strip.jpg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Cupro Nickle Product</p><a href="#subsection2"><img
+                            src="{% static 'Assets/Images/Cupro Nickle Product/Cupro_nickle.jpg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Tungsten Wire</p><a href="#subsection3"><img
+                            src="{% static 'Assets/Images/Tungsten Wire/Tungsten.jpg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Nikrothal Wire</p><a href="#subsection4"><img
+                            src="{% static 'Assets/Images/Nikrothal Wire/Nikrothal.jpg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Nickrome Wire</p><a href="#subsection5"><img
+                            src="{% static 'Assets/Images/Nickrome Wire/Nickrome_wire.jpeg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Copper Wire</p><a href="#subsection6"><img
+                            src="{% static 'Assets/Images/Copper Wire/copper_wire.jpg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Hastelloy Wire</p><a href="#subsection7"><img
+                            src="{% static 'Assets/Images/Hastelloy Wire/hastelloy_wire.jpg' %}"></a>
+                </div>
+                <div class="slider-item">
+                    <p>Hastelloy Sheet</p><a href="#subsection8"><img
+                            src="{% static 'Assets/Images/Hastelloy Sheet/hastelloy_sheet.jpg' %}"></a>
+                </div>
+            </div>
+        </div>
+
+
+        <!--Main Product Section-->
+        <div id="#metal-wire" class="product-section">
+            <h2>Nickle Strip</h2>
+            <p>Our range of products include Nickel Strips 22650, Nickel Strip ,Belt ,Bush Bar, Nickel 200 N6 99.96 %
+                Strip, Nickel Iron ( Fe ) Alloy Wire Strip and Fuse Type Nickel Strip.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection1">
+                    <div class="subsection-items">
+                        <p>Nickle Strip 22650</p><a href="{% url 'Shwet_Multimetal_Company:Nickel_strip' %}"><img
+                                src="{% static 'Assets/Images/Nickel Strip/nickel_strips_22650.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel Strip, belt, bush bar</p><a
+                            href="{% url 'Shwet_Multimetal_Company:Nickel_strip' %}"><img
+                                src="{% static 'Assets/Images/Nickel Strip/Nickel_belt.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel 200</p><a href="{% url 'Shwet_Multimetal_Company:Nickel_strip' %}"><img
+                                src="{% static 'Assets/Images/Nickel Strip/Nickel_200.jpeg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel Iron Alloy</p><a href="{% url 'Shwet_Multimetal_Company:Nickel_strip' %}"><img
+                                src="{% static 'Assets/Images/Nickel Strip/Nickel Iron Alloy.jpeg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Fuse Type Nickel Strip</p><a href="{% url 'Shwet_Multimetal_Company:Nickel_strip' %}"><img
+                                src="{% static 'Assets/Images/Nickel Strip/Fuse Nickel Strip.jpeg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Nickel_strip' %}" class="button">View More</a>
+
+            </div>
+        </div>
+        <div id="#metal-sheet" class="product-section">
+            <h2>Cupro Nickle</h2>
+            <p>We are a leading Manufacturer of Nichrome Wire, Nichrome Nickel Chron Resistance Wire Strip, Nickel Alloy
+                Wire, Nickel Chromium Wire and Heat Resistant Wire from Mumbai, India.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper">
+                    <div class="subsection-items" id="subsection2">
+                        <p>Nickel Strips 26650</p><a href="{% url 'Shwet_Multimetal_Company:Cupro_Nickle' %}"><img
+                                src="{% static 'Assets/Images/Cupro Nickle Product/Nickel Strips 26650.png' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel Strips 32650</p><a href="{% url 'Shwet_Multimetal_Company:Cupro_Nickle' %}"><img
+                                src="{% static 'Assets/Images/Cupro Nickle Product/Nickel Strips 32650.png' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel-sheets</p><a href="{% url 'Shwet_Multimetal_Company:Cupro_Nickle' %}"><img
+                                src="{% static 'Assets/Images/Cupro Nickle Product/Nickel-sheets.png' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel-alloy-nuts</p><a href="{% url 'Shwet_Multimetal_Company:Cupro_Nickle' %}"><img
+                                src="{% static 'Assets/Images/Cupro Nickle Product/Nickel-alloy-nuts.png' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Copper-nickel-strip</p><a href="{% url 'Shwet_Multimetal_Company:Cupro_Nickle' %}"><img
+                                src="{% static 'Assets/Images/Cupro Nickle Product/Copper-nickel-strip.png' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Cupro_Nickle' %}" class="button">View More</a>
+
+            </div>
+        </div>
+        <div id="#metal-tubes" class="product-section">
+            <h2>Tungsten Wire</h2>
+            <p>Our range of products include Tungsten Wire, Tungsten Wire and Molybdenum Wire.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection3">
+                    <div class="subsection-items">
+                        <p>Tungsten Wire</p><a href="{% url 'Shwet_Multimetal_Company:Tungsten_Wire' %}"><img
+                                src="{% static 'Assets/Images/Tungsten Wire/Tungsten Wire.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Molybdenum Wire</p><a href="{% url 'Shwet_Multimetal_Company:Tungsten_Wire' %}"><img
+                                src="{% static 'Assets/Images/Tungsten Wire/molybdenum Wire.jpg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Tungsten_Wire' %}" class="button">View More</a>
+            </div>
+        </div>
+        <div id="#metal-tubes" class="product-section">
+            <h2>Nikrothal Wire</h2>
+            <p>Our range of products include Heating Wire.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection4">
+                    <div class="subsection-items">
+                        <p>Nikrothal Wire</p><a href="{% url 'Shwet_Multimetal_Company:Nikrothal_Wire' %}"><img
+                                src="{% static 'Assets/Images/Nikrothal Wire/Nikrothal.jpg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Nikrothal_Wire' %}" class="button">View More</a>
+            </div>
+        </div>
+
+        <div id="#metal-tubes" class="product-section">
+            <h2>Nickrome Wire</h2>
+            <p>We are a leading Manufacturer of Nichrome Wire, Nichrome Nickel Chrom Resistance Wire Strip, Nickel Alloy
+                Wire, Nickel Chromium Wire and Heat Resistant Wire from Mumbai, India.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection5">
+                    <div class="subsection-items">
+                        <p>Nickrome Wire</p><a href="{% url 'Shwet_Multimetal_Company:Nichrome_Wire' %}"><img
+                                src="{% static 'Assets/Images/Nickrome Wire/Nickrome Wire.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickrome strip</p><a href="{% url 'Shwet_Multimetal_Company:Nichrome_Wire' %}"><img
+                                src="{% static 'Assets/Images/Nickrome Wire/Nickrome strip.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel-alloy-wire</p><a href="{% url 'Shwet_Multimetal_Company:Nichrome_Wire' %}"><img
+                                src="{% static 'Assets/Images/Nickrome Wire/Nickel-alloy-wire.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Nickel-chromium-wires</p><a href="{% url 'Shwet_Multimetal_Company:Nichrome_Wire' %}"><img
+                                src="{% static 'Assets/Images/Nickrome Wire/Nickel-chromium-wires.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Heat-resistant-wire</p><a href="{% url 'Shwet_Multimetal_Company:Nichrome_Wire' %}"><img
+                                src="{% static 'Assets/Images/Nickrome Wire/Heat-resistant-wire.jpg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Nichrome_Wire' %}" class="button">View More</a>
+            </div>
+        </div>
+        <div id="#metal-tubes" class="product-section">
+            <h2>Copper Wire</h2>
+            <p>Our product range includes a wide range of Copper Nickel Alloys Wire Sheet ,Rod Bar, Copper Nickel
+                Resistance Wire Strip, Brass EDM Wire and Thermocupul Jp Jn Bare Conductor Wire.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection6">
+                    <div class="subsection-items">
+                        <p>Copper Nickel Alloy</p><a href="{% url 'Shwet_Multimetal_Company:Copper_wire' %}"><img
+                                src="{% static 'Assets/Images/Copper Wire/Copper Nickel Alloy Wire.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Copper Nickel Resistance</p><a href="{% url 'Shwet_Multimetal_Company:Copper_wire' %}"><img
+                                src="{% static 'Assets/Images/Copper Wire/Copper Nickel Resistance.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Brass EDM Wire</p><a href="{% url 'Shwet_Multimetal_Company:Copper_wire' %}"><img
+                                src="{% static 'Assets/Images/Copper Wire/Brass EDM Wire.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Thermocouple-wire</p><a href="{% url 'Shwet_Multimetal_Company:Copper_wire' %}"><img
+                                src="{% static 'Assets/Images/Copper Wire/Thermocouple-wire.jpg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Copper_wire' %}" class="button">View More</a>
+            </div>
+        </div>
+        <div id="#metal-tubes" class="product-section">
+            <h2>Hastelloy Wire</h2>
+            <p>Offering you a complete choice of products which include 0.25 Mm Hastelloy C22 /276 Wire and Hastelloy
+                C276 Wire.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection7">
+                    <div class="subsection-items">
+                        <p>Hastelloy C22/276 wire</p><a href="{% url 'Shwet_Multimetal_Company:Hastelloy_Wire' %}"><img
+                                src="{% static 'Assets/Images/Hastelloy Wire/Hastelloy Wire.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>hastealloy-wire-c-276</p><a href="{% url 'Shwet_Multimetal_Company:Hastelloy_Wire' %}"><img
+                                src="{% static 'Assets/Images/Hastelloy Wire/hastealloy-wire-c-276.jpg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Hastelloy_Wire' %}" class="button">View More</a>
+            </div>
+        </div>
+        <div id="#metal-tubes" class="product-section">
+            <h2>Hastelloy Sheet</h2>
+            <p>Pioneers in the industry, we offer Hastelloy C276 Sheet ,Wire ,Rod And Bar and Hastelloy C22 Sheet from
+                India.</p>
+            <div id="subsection">
+                <div class="subsection-wrapper" id="subsection8">
+                    <div class="subsection-items">
+                        <p>Hastelloy C276 Sheet</p><a href="{% url 'Shwet_Multimetal_Company:Hastelloy_sheet' %}"><img
+                                src="{% static 'Assets/Images/Hastelloy Sheet/Hastelloy C276 Sheet.jpg' %}"></a>
+                    </div>
+                    <div class="subsection-items">
+                        <p>Hastelloy C22 Sheet</p><a href="{% url 'Shwet_Multimetal_Company:Hastelloy_sheet' %}"><img
+                                src="{% static 'Assets/Images/Hastelloy Sheet/Hastelloy C22 Sheet.jpg' %}"></a>
+                    </div>
+                </div>
+                <a href="{% url 'Shwet_Multimetal_Company:Hastelloy_sheet' %}" class="button">View More</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    <!--Footer section-->
+    <section class="footer">
+        <div class="footer-info">
+            <p>Contact Information:</p>
+            <p>Email: Sagarshet85@gmail.com</p>
+            <p>Phone: 9769415003</p>
+        </div>
+    </section>
+    <div class="h4">
+        &copy; 2024 All rights are reserved to Shwet Multimetals Company <br>
+        Developed and Maintained by:<br>
+        Pakhre Roshan<br>
+        Viraj Matekar
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Toggle dropdown menu when clicking on Account
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle();
+        });
+    });
+</script>
+
+</html>

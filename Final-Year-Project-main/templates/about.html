@@ -1,0 +1,474 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'Assets/Images/fevicon.jpg' %}" type="jpg">
+    <title>Shwet metals</title>
+    <style>
+        /*Css code for navigation*/
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: linear-gradient(45deg, #0072ff, #003366);
+        }
+
+        .nav-title img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav {
+            width: 100%;
+            background: transparent;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            background: linear-gradient(45deg, #0072ff, #003366);
+        }
+
+        .nav-list {
+            font-size: 15px;
+        }
+
+        .nav>.nav-header {
+            flex: 0.95;
+            padding-left: 1rem;
+        }
+
+        .nav>.nav-header>.nav-title {
+            font-size: 10px;
+            color: rgb(15, 3, 3);
+        }
+
+        .nav>.nav-list {
+            margin-right: 10px;
+            gap: 2rem;
+            display: flex;
+        }
+
+        .nav>.nav-list>li {
+            list-style: none;
+        }
+
+        .nav>.nav-list>li a {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav>#nav-check {
+            display: none;
+        }
+
+        i {
+            margin-right: 5px;
+        }
+
+        /* Styles for Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            background-color: #003366;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            margin-left: -35px;
+            margin-top: 10px;
+            width: 125px;
+        }
+
+        .dropdown-menu li {
+            padding: 8px 12px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .dropdown-menu li a {
+            color: #003366;
+            margin-left: -50px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu li {
+            cursor: pointer;
+        }
+
+        .dropdown-menu li i {
+            margin-left: 15px;
+            /* Add space between icon and text */
+        }
+
+        #list {
+            margin-right: 15px;
+        }
+
+        /*About Section*/
+        .about-section {
+            background-color: #ffffff;
+        }
+
+        .About {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #007bff;
+            margin-top: 20px;
+        }
+
+        h3 {
+            font-size: 18px;
+            color: #007bff;
+            margin-bottom: 10px;
+        }
+
+        h4 {
+            font-size: 16px;
+            color: #007bff;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .paragraph p {
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        hr {
+            border: 1px solid #ddd;
+            margin: 20px 0;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /*Css code for Footer section*/
+        .footer {
+            background: transparent;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .footer h4 {
+            color: #ffffff;
+        }
+
+        .footer-info {
+            text-align: center;
+        }
+
+        .Footer-info p {
+            margin: 5px 0;
+        }
+
+        .footer-content,
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content,
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content,
+        .footer-links a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .footer,
+        .h4 {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ffffff;
+        }
+
+        .Icon {
+            background-color: transparent;
+            padding: 10px;
+        }
+
+        .Icon a {
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .h4 {
+            background-color: transparent;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+
+        @media (max-width: 600px) {
+            .nav>.nav-btn {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding-top: 0.2rem;
+            }
+
+            .nav>.nav-btn>label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                padding: 13px;
+            }
+
+            .nav>.nav-btn>label>span {
+                background-color: white;
+                display: block;
+                width: 25px;
+                height: 4px;
+                border: 1px solid #003366;
+                margin-bottom: 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .nav-list {
+                background: linear-gradient(45deg, #0072ff, #003366);
+                position: absolute;
+                color: #000;
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                height: 0;
+                transition: all 0.3s ease-in;
+                top: 28px;
+                left: 0;
+                overflow: hidden;
+
+            }
+
+            .nav>.nav-list>li a {
+                color: white;
+                font-weight: 1000;
+            }
+
+            .nav>.nav-list>li a:hover {
+                text-decoration: underline;
+            }
+
+            .nav>.login-btn {
+                margin-right: 40px;
+            }
+
+            .nav>.nav-list>li {
+                color: #ffffff;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .nav>#nav-check:checked~.nav-list {
+                height: calc(100vh - 10px);
+            }
+
+            .nav-list {
+                font-size: 15px;
+            }
+
+            /*Css code for footer section*/
+            .footer {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-info,
+            .footer-content {
+                margin: 10px 0;
+            }
+
+            .Footer-info p,
+            .Footer-content,
+            .footer-links {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!--Navigation Section-->
+    <section class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                <img src="{% static 'Assets/Images/Logo.png' %}">
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <ul class="nav-list">
+            <li><a href="{% url 'Shwet_Multimetal_Company:home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:product' %}"><i class="fas fa-shopping-cart"></i> Product</a>
+            </li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:about' %}"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:contact' %}"><i class="fas fa-phone"></i> Contact</a></li>
+
+            <!-- Dropdown Menu -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fas fa-user"></i> Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'userauths:logout' %}"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+    </section>
+
+    <!--About us-->
+    <section class="about-section">
+        <div class="About">
+            <h1>About us!</h1>
+
+            <div class="detail">
+                <h3>
+                    Company Name : Shwet Multimetals<br>
+                    Establishment year : 1970
+                </h3>
+            </div>
+            <hr>
+
+            <div class="paragraph">
+                <h1>Our Story</h1>
+                <p>
+                    Welcome to Shwet Multimetals,
+                    your trusted source for high-quality metal products.
+                    With a heritage dating back to 1970,
+                    we have proudly served the metal industry for over 53 years.
+                    Our journey from inception to becoming a respected name in the industry has been a testament to our
+                    unwavering dedication,
+                    commitment to quality, and passion for metal excellence.
+                </p>
+
+                <h1>Our Product</h1>
+                <p>
+                    At Shwet Multinational Company,
+                    we are passionate about providing top-grade
+                    metal products to meet your industrial and commercial needs.
+                    We specialize in the following key product categories:
+                </p>
+                <p>
+                <h4>Nichrome Strip:</h4>
+                <p>
+                    Our Nichrome strips are known for their exceptional resistance properties,
+                    making them an ideal choice for a wide range of heating applications.
+                    We offer a variety of specifications to suit your unique requirements.
+                </p>
+                <h4>Titanium Sheets:</h4>
+                <p>
+                    Our Titanium sheets are crafted to deliver the perfect blend of strength and lightness.
+                    Whether you require sheets for aerospace, medical, or industrial purposes, our high-quality Titanium
+                    products have you covered.
+                </p>
+                <h4>Tungsten Vacuum Filaments:</h4>
+                <p>
+                    We offer precision-engineered Tungsten vacuum filaments designed to meet the demands of vacuum
+                    deposition processes.
+                    Our filaments are known for their reliability and consistent performance.
+                </p>
+                </p>
+                <h1>Contact</h1>
+                <p>
+                    We value strong communication with our customers and are always ready to assist you.
+                    Please don't hesitate to reach out to us through the following contact methods:
+
+                <h4>Address:</h4>
+                <p>
+                <address><i class="fas fa-map-marker"></i>
+                    Shwet Multimetals,<br>
+                    No.41, 3rd Floor, Mani Bhavan,<br>
+                    19th Pathak wadi, Lohar Chawl,<br>
+                    Mumbai, Maharashtra 400002.
+                </address>
+                </p>
+                <h4>Phone:</h4>
+                <p><i class="fas fa-phone"></i> 9769415003</p>
+                <h4>Email:</h4>
+                <p><i class="fas fa-envelope"></i> Sagarshet85@gmail.com</p>
+                </p>
+                <h1>Customer Support:</h1>
+                <p>
+                    Our dedicated customer support team is available to address your inquiries,
+                    provide product information, and assist you in making the right choice.
+                    You can contact us via email or phone during our working hours,
+                    and we will ensure a prompt and helpful response.
+                </p>
+                <p>
+                    Thank you for choosing Shwet Multimetals as your trusted supplier of high-quality metal products.
+                    We look forward to the opportunity to serve your metal requirements and contribute to your success
+                    in various industries.
+                </p>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <!--Footer section-->
+    <section class="footer">
+        <div class="footer-info">
+            <p>Contact Information:</p>
+            <p><i class="fas fa-map-marker"></i>Shwet Multimetals,<br>
+                No.41, 3rd Floor, Mani Bhavan,<br>
+                19th Pathak wadi, Lohar Chawl,<br>
+                Mumbai, Maharashtra 400002.</p>
+            <p><i class="fas fa-envelope"></i> Sagarshet85@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 9769415003</p>
+        </div>
+    </section>
+    <div class="h4">
+        &copy; 2024 All rights are reserved to Shwet Multimetals Company.<br>
+        Developed and Maintained by:<br>
+        Pakhre Roshan<br>
+        Viraj Matekar
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Toggle dropdown menu when clicking on Account
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle();
+        });
+    });
+</script>
+
+</html>

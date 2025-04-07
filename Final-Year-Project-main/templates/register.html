@@ -1,0 +1,168 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shwet Multimetals</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="icon" href="{% static 'Assets/Images/Logo.png' %}" type="png">
+    <style>
+        *{
+            box-sizing: border-box;
+        }
+
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0 auto;
+            background: linear-gradient(45deg, #0072ff ,#003366);
+        }
+
+        .container{
+            width: 700px;
+            height: auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+        }
+
+        .container h3{
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .input-field{
+           padding: 10px;
+           display: block;
+            margin: 0 auto;
+        }
+
+        input{
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #0072ff;
+            outline: none;
+            width: 80%;
+            margin-bottom: 5px;
+        }
+
+        input:active{
+            border: 1px solid #003366;
+        }
+
+        button{
+                background-color: #ffffff;
+                border: 2px solid #0072ff;
+                padding: 10px 20px;
+                border-radius: 9px;
+                cursor: pointer;
+                margin-right: 50px;
+                transition: all .3s ease-in-out;
+        }
+
+        button:hover{
+                background-color: #0072ff;
+                border: 2px solid #0072ff;
+                color: #ffffff;
+        }
+
+        button:active{
+                background-color: #003366;
+                border: 2px solid #003366;
+        }
+
+        /*Hide Default checkbox*/
+        .eye-checkbox{
+            display: none;
+        }
+
+        /*Create a custom checkbox*/
+        .eye-label{
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            cursor: pointer;
+        }
+
+        /*Style the unchecked state*/
+        .eye-label::before{
+            content: url("eye-unchecked.png");/*Replace with your own image*/
+            display: block;
+            width: 10px;
+            height: 10px;
+        }
+
+        @media (max-width: 600px){
+            body{
+                background-size: cover;
+                background-repeat: no-repeat;
+                background-position: center;
+            }
+            .container{
+                width: 350px;
+                height: auto;
+                border-radius: none;
+            }
+
+            .container h3{
+                margin-top: -10px;
+            }
+
+            button{
+                background-color: #ffffff;
+                border: 2px solid #0072ff;
+                padding: 5px 10px;
+                border-radius: 9px;
+                cursor: pointer;
+                margin-right: 50px;
+                display: block;
+                margin: 0 auto;
+            }
+  
+            .container h3{
+               text-align: center;
+               font-size: 20px;
+            }
+
+            .input-field{
+               padding: 5px;
+            }
+
+            input{
+               padding: 5px;
+               border-radius: 5px;
+               border: 1px solid #0072ff;
+               outline: none;
+               width: auto;
+            }   
+
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <center>
+            <h1>Register Here</h1>
+            <form action="" method="post">
+                {% csrf_token %} <br>
+                <!-- <input type="text" class="form-control" name="Username" id="Username" placeholder="Enter Name Here">
+                <br>
+                <input type="email" class="form-control" name="email" id="email" placeholder="name@gmail.com">
+                <br>
+                <input type="password" name="pass1" id="pass1" class="form-control" placeholder="Enter Password">
+                <br>
+                <input type="password" name="pass2" id="pass2" class="form-control" placeholder="Enter Password Again...">
+                <br> -->
+                {{form}}
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </center>
+    </div>
+    
+</body>
+</html>
+

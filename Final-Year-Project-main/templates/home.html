@@ -1,0 +1,1032 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="{% static 'Assets/Images/fevicon.jpg' %}" type="jpg">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/4.1.0/anime.min.js"></script>
+    <title>Shwet Multimetal</title>
+    <style>
+        * {
+            -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: -webkit-gradient(linear, left top, right top, from(#0072ff), to(#003366));
+            background: -o-linear-gradient(left, #0072ff, #003366);
+            background: linear-gradient(to right, #0072ff, #003366);
+        }
+
+        .nav-title img {
+            width: 40px;
+            height: 40px;
+        }
+
+        .nav {
+            width: 100%;
+            background: transparent;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            background: transparent;
+        }
+
+        .nav-list {
+            font-size: 15px;
+        }
+
+        .nav>.nav-header {
+            -webkit-box-flex: 0.95;
+            -ms-flex: 0.95;
+            flex: 0.95;
+            padding-left: 1rem;
+        }
+
+        .nav>.nav-header>.nav-title {
+            font-size: 10px;
+            color: rgb(15, 3, 3);
+        }
+
+        .nav>.nav-list {
+            margin-right: 10px;
+            gap: 2rem;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .nav>.nav-list>li {
+            list-style: none;
+        }
+
+        .nav>.nav-list>li a {
+            text-decoration: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .nav>#nav-check {
+            display: none;
+        }
+
+        i {
+            margin-right: 10px;
+        }
+
+        /* Styles for Dropdown Menu */
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            z-index: 1;
+            background-color: #003366;
+            border: 1px solid #003366;
+            border-radius: 5px;
+            margin-left: -35px;
+            margin-top: 10px;
+            width: 125px;
+        }
+
+        .dropdown-menu li {
+            padding: 8px 12px;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            color: #ffffff;
+        }
+
+        .dropdown-menu li a {
+            color: #003366;
+            margin-left: -50px;
+            cursor: pointer;
+        }
+
+        .dropdown-menu li {
+            cursor: pointer;
+        }
+
+        .dropdown-menu li i {
+            margin-left: 15px;
+            /* Add space between icon and text */
+        }
+
+        #list {
+            margin-right: 15px;
+        }
+
+        /*CSS Code for header section*/
+        .Header {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            background: #ffffff;
+        }
+
+        .block1 {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .block1 h1 {
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 60px;
+            color: #003366;
+            margin-top: 30px;
+        }
+
+        .block1 .button {
+            background-color: transparent;
+            padding: 10px 20px;
+            color: #003366;
+            border: 2px solid #003366;
+            border-radius: 4px;
+            text-decoration: none;
+        }
+
+        .block1 .button:hover {
+            background-color: #003366;
+            color: #ffffff;
+            -webkit-transition: all 0.3s ease-in-out;
+            -o-transition: all 0.3s ease-in-out;
+            transition: all 0.3s ease-in-out;
+        }
+
+        .block1 p {
+            font-family: Arial, Helvetica, sans-serif;
+            margin-top: -20px;
+            font-size: 20px;
+            color: #003366;
+            margin-top: 20px;
+        }
+
+        .block2 {
+            -webkit-box-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            padding: 10px;
+        }
+
+        .block2 img {
+            height: 400px;
+            width: 100%;
+            -o-object-fit: fill;
+            object-fit: fill;
+        }
+
+        img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        /*CSS code for CTA Section*/
+        .cta-section {
+            background-color: #ffffff;
+            padding: 20px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            color: #003366;
+        }
+
+        .cta-content {
+            max-width: 800px;
+            width: 80%;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .cta-heading {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .cta-description {
+            font-size: 18px;
+            line-height: 1.5rem;
+            margin-bottom: 30px;
+        }
+
+        .img-container {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            max-width: 400px;
+        }
+
+        .img-row {
+            width: 100%;
+            height: 100%;
+        }
+
+        /*Information Section*/
+        .info {
+            background-color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 10px;
+        }
+
+        .info h1 {
+            margin-top: -10px;
+            font-size: 55px;
+            color: #003366;
+        }
+
+        .paragraph {
+            margin-top: 60px;
+            color: #0072ff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            font-size: 30px;
+        }
+
+        .paragraph p {
+            color: #0072ff;
+            text-align: center;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+            margin: 5px 0;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+
+        }
+
+        .paragraph p span {
+            border-right: 1.5px solid #ccc;
+            padding-right: 10px;
+            margin-right: 20px;
+            -webkit-box-pack: justify;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+        }
+
+        .link {
+            padding: 10px 20px;
+            border: 2px solid black;
+            width: 40%;
+            margin-left: auto;
+            margin-right: auto;
+            border-radius: 5px;
+        }
+
+        /* About Section */
+        .about-us {
+            background-color: #ffffff;
+            padding: 60px 0;
+            margin-top: -30px;
+        }
+
+        .about-us-info {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+        }
+
+        .block2 p::first-letter {
+            font-size: 2rem;
+        }
+
+        .about-us h1 {
+            font-size: 40px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .block1 {
+            padding: 10px;
+            -webkit-box-flex: 5;
+            -ms-flex: 5;
+            flex: 5;
+            width: 50%;
+        }
+
+        .block1 img {
+            height: 400px;
+            width: 100%;
+            -o-object-fit: fill;
+            object-fit: fill;
+        }
+
+        .block2 {
+            -webkit-box-flex: 5;
+            -ms-flex: 5;
+            flex: 5;
+            color: #003366;
+        }
+
+        .block2 p {
+            display: block;
+            margin: 0, auto;
+            font-size: 20px;
+            line-height: 1.5rem;
+            /* margin-bottom: 15px; */
+        }
+
+        /* Client Info */
+
+        /*Contact form*/
+        .container {
+            display: flex;
+            /* Main container layout */
+            flex-direction: row;
+            /* Arrange elements horizontally */
+            background-color: #ffffff;
+        }
+
+        .review-container {
+            /* Form section styles */
+            width: 50%;
+            /* Adjust width as needed for form */
+            margin-top: 20px;
+            display: flex;
+            /* Form container layout */
+            flex-direction: column;
+            /* Arrange form elements vertically */
+            align-items: center;
+            /* Center elements horizontally */
+        }
+
+        .review-container form {
+            width: 100%;
+            /* Form element width */
+            text-align: center;
+            /* Text alignment within form */
+        }
+
+        .review-container label {
+            font-weight: bold;
+        }
+
+        .review-container select,
+        .review-container textarea,
+        .review-container input[type="text"] {
+            width: 100%;
+            /* Input element width */
+            padding: 8px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .review-container button[type="submit"] {
+            background-color: #0072ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .review-container button[type="submit"]:hover {
+            background-color: #031292;
+        }
+
+        .review-screen {
+            width: 50%;
+            /* Adjust width as needed for reviews */
+            margin: 20px auto;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            background-color: #f5f5f5;
+            /* Light gray background */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            /* Subtle shadow effect */
+            overflow: auto;
+            /* Scrolling for long content */
+            max-height: 400px;
+            /* Adjust as needed */
+        }
+
+        .review-screen h2 {
+            text-align: center;
+            margin-bottom: 10px;
+            color: #333;
+            /* Darker text for heading */
+        }
+
+        .review-screen ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .review-screen li {
+            margin-bottom: 15px;
+            border-bottom: 1px solid #ddd;
+            /* Add a subtle border between reviews */
+            padding-bottom: 10px;
+            /* Add some padding below the border */
+        }
+
+        .review-screen li b {
+            display: inline-block;
+            width: 100px;
+            /* Adjust width if name is longer */
+            font-weight: bold;
+            color: #333;
+            /* Darker text for reviewer name */
+        }
+
+        .review-screen li .rating {
+            display: inline-block;
+            /* Display stars inline with name */
+            font-size: 20px;
+            /* Adjust font size for stars */
+            margin-left: 10px;
+            /* Add some space between name and stars */
+        }
+
+        .review-screen li .rating i {
+            color: gold;
+            /* Change color for filled stars */
+        }
+
+        .review-screen li p {
+            margin-top: 5px;
+            /* Add some margin above review content */
+            color: #666;
+            /* Lighter text for content */
+        }
+
+
+
+
+        /*Css code for Footer section*/
+        .footer {
+            background-color: transparent;
+            color: #fff;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            padding: 20px;
+            -ms-flex-pack: distribute;
+            justify-content: space-around;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center;
+        }
+
+        .footer-info {
+            text-align: center;
+        }
+
+        .Footer-info p {
+            margin: 5px 0;
+        }
+
+        .footer-content,
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-content,
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-content,
+        .footer-links a {
+            text-decoration: none;
+            color: #ffffff;
+        }
+
+        .footer,
+        .h4 {
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #ffffff;
+        }
+
+        .Icon {
+            background-color: transparent;
+            padding: 10px;
+        }
+
+        .Icon a {
+            color: #fff;
+            margin-right: 10px;
+        }
+
+        .h4 {
+            background-color: tr;
+            color: #ffffff;
+            padding: 10px;
+        }
+
+        @media (max-width: 600px) {
+            .nav>.nav-btn {
+                display: inline-block;
+                position: absolute;
+                right: 0;
+                top: 0;
+                padding-top: 0.2rem;
+            }
+
+            .nav>.nav-btn>label {
+                display: inline-block;
+                width: 50px;
+                height: 50px;
+                padding: 13px;
+            }
+
+            .nav>.nav-btn>label>span {
+                background-color: white;
+                display: block;
+                width: 25px;
+                height: 4px;
+                border: 1px solid #003366;
+                margin-bottom: 2px;
+                cursor: pointer;
+                border-radius: 5px;
+            }
+
+            .nav-list {
+                background: -webkit-gradient(linear, left top, right top, from(#0072ff), to(#003366));
+                background: -o-linear-gradient(left, #0072ff, #003366);
+                background: linear-gradient(to right, #0072ff, #003366);
+                position: absolute;
+                color: #000;
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                gap: 1rem;
+                width: 100%;
+                height: 0;
+                -webkit-transition: all 0.3s ease-in;
+                -o-transition: all 0.3s ease-in;
+                transition: all 0.3s ease-in;
+                top: 28px;
+                left: 0;
+                overflow: hidden;
+
+            }
+
+            .nav>.nav-list>li a {
+                color: white;
+                font-weight: 1000;
+            }
+
+            .nav>.nav-list>li a:hover {
+                text-decoration: underline;
+            }
+
+            .nav>.login-btn {
+                margin-right: 40px;
+            }
+
+            .nav>.nav-list>li {
+                color: #ffffff;
+                width: 100%;
+                margin-top: 1.5rem;
+            }
+
+            .nav>#nav-check:checked~.nav-list {
+                height: calc(100vh - 10px);
+            }
+
+            .nav-list {
+                font-size: 15px;
+            }
+
+            #list {
+                margin-top: -15px;
+            }
+
+            /*Css code for Header Section*/
+            .Header {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .Header h1 {
+                margin-top: 10px;
+                font-size: 38px;
+                margin-bottom: 10px;
+            }
+
+            .Header p {
+                font-size: 16px;
+                margin-bottom: 20px;
+            }
+
+            img {
+                width: 90%;
+            }
+
+            .block1 p {
+                margin-bottom: 20px;
+            }
+
+            .block1 a {
+                display: block;
+                margin-bottom: 10px;
+            }
+
+            .block1,
+            .block2 {
+                width: 100%;
+                text-align: center;
+            }
+
+            .block2 img {
+                display: none;
+            }
+
+            /*Css code for cta-section*/
+            .cta-section {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                margin-top: -10px;
+            }
+
+            .cta-heading {
+                font-size: 24px;
+                font-weight: bolder;
+            }
+
+            .cta-description {
+                font-size: 20px;
+            }
+
+            .img-container {
+                height: 300px;
+                max-width: 100%;
+                margin: 10px;
+                margin-top: 30px;
+            }
+
+            /* Testimonial Section */
+            .text {
+                margin-top: -10px;
+            }
+
+            /*CSS code for information section*/
+            .info {
+                padding: -20px;
+                background-color: #fff;
+                /* margin-top: -100px; */
+            }
+
+            .info h1 {
+                font-size: 26px;
+            }
+
+            .paragraph {
+                font-size: 18px;
+                margin-top: -10px;
+            }
+
+            /* Css code for about us */
+            .about-us {
+                padding: -100px 0;
+                /* margin-top: -80px; */
+            }
+
+            .about-us-info {
+                display: -webkit-box;
+                display: -ms-flexbox;
+                display: flex;
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+            }
+
+            .block1 img {
+                display: none;
+            }
+
+            .block2 p {
+                font-size: 14px;
+            }
+
+            .block2 p::first-letter {
+                font-size: 1.3rem;
+                color: #000;
+            }
+
+
+            /* css for contact form*/
+            .container {
+                flex-direction: column;
+            }
+
+                /* Stack elements vertically on small screens */
+            .review-container,
+            .review-screen {
+                    width: 100%;
+                    /* Take full width on small screens */
+                
+            }
+
+            /* Base styles */
+            .review-container {
+                padding: 10px;
+            }
+
+            .input-file input[type="text"],
+            .input-file textarea,
+            .input-file select {
+                font-size: 14px;
+            }
+
+            /*Css code for footer section*/
+            .footer {
+                -webkit-box-orient: vertical;
+                -webkit-box-direction: normal;
+                -ms-flex-direction: column;
+                flex-direction: column;
+                text-align: center;
+                margin-top: -0px;
+            }
+
+            .footer-info,
+            .footer-content {
+                margin: 10px 0;
+            }
+
+            .Footer-info p,
+            .Footer-content,
+            .footer-links {
+                margin-bottom: 5px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- <div class="preloader">
+        You can use any loading animation here, for simplicity, I'm using an image
+        <img src="{% static 'Assets/Images/Loading.gif' %}" alt="Loading...">
+    </div> -->
+
+    <section class="nav">
+        <input type="checkbox" id="nav-check">
+        <div class="nav-header">
+            <div class="nav-title">
+                <img src="{% static 'Assets/Images/Logo.png' %}">
+            </div>
+        </div>
+        <div class="nav-btn">
+            <label for="nav-check">
+                <span></span>
+                <span></span>
+                <span></span>
+            </label>
+        </div>
+        <ul class="nav-list">
+            <li><a href="{% url 'Shwet_Multimetal_Company:home' %}"><i class="fas fa-home"></i> Home</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:product' %}"><i class="fas fa-shopping-cart"></i> Product</a>
+            </li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:about' %}"><i class="fas fa-user"></i> About</a></li>
+            <li><a href="{% url 'Shwet_Multimetal_Company:contact' %}"><i class="fas fa-phone"></i> Contact</a></li>
+
+            <!-- Dropdown Menu -->
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <i class="fas fa-user"></i> Account <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a href="{% url 'userauths:logout' %}"><i class="fas fa-sign-in-alt"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>
+
+    </section>
+
+    <!--Header Section-->
+    <Section class="Header">
+        <div class="block1">
+            <h1>Shwet Multimetals</h1>
+            <p>"Your vision, our commitment - the perfect metal match awaits you at Shwet Multimetals."</p>
+            <br>
+            <br>
+            <!-- <a href="Login.html" class="button">Sign In <i class="fas fa-user"></i></a> -->
+            <a href="{% url 'Shwet_Multimetal_Company:product' %}" class="button">Explore Our catalog <i
+                    class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="block2">
+            <img src="{% static 'Assets/Images/Header_Image.png' %}">
+        </div>
+    </Section>
+
+    <!--CTA section-->
+    <section class="cta-section">
+        <div class="cta-block1">
+            <div class="cta-content">
+                <p class="cta-heading">
+                    Discover the power of metals with the help of your trusted source Shwet Multimetals
+                </p>
+                <p class="cta-description">
+                    Experience the strength and versatility of our metal products
+                </p>
+
+            </div>
+        </div>
+        <div class="img-block2">
+            <div class="img-container">
+                <div class="img-row">
+                    <img
+                        src="{% static 'C:\Users\pakhr\OneDrive\Desktop\Ecommerce_project\static\Assets\Images\Cupro Nickle Product\Copper-nickel-strip.png' %}">
+                    <img
+                        src="{% static 'C:\Users\pakhr\OneDrive\Desktop\Ecommerce_project\static\Assets\Images\Metal_Wire.jpeg' %}">
+                </div>
+                <div class="img-row">
+                    <img src="{% static 'Assets/Images/Nickel Strip/Nickel Iron Alloy.jpeg' %}">
+                    <img
+                        src="{% static 'C:\Users\pakhr\OneDrive\Desktop\Ecommerce_project\static\Assets\Images\Nickel Strip\Nickel_Strip.jpg' %}">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!--Information section-->
+    <section class="info">
+        <h1>Why Shwet<br>
+            Multinational?</h1>
+        <div class="paragraph">
+            <p><span>53+ Years of service</span></p>
+            <p><span>1500+ Happy Customers</span></p>
+            <p>100% Guaranteed Satisfaction</p>
+        </div>
+    </section>
+
+    <!-- About us -->
+    <section class="about-us">
+        <h1>About Us</h1>
+        <div class="about-us-info">
+            <div class="block1">
+                <img src="{% static 'Assets/Images/Professional_Character.png' %}" alt="o">
+            </div>
+            <div class="block2">
+                <p>
+                    Welcome to Shwet Multimetals,
+                    your trusted source for high-quality metal products.
+                    With a heritage dating back to 1970,
+                    we have proudly served the metal industry for over 53 years.
+                    Our journey from inception to becoming a respected name in the industry has been a testament to our
+                    unwavering dedication,
+                    commitment to quality, and passion for metal excellence.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!--Testimonial Section-->
+    <!-- <section class="testimonial">
+        <div class="testimonial-container">
+            <div class="photo">
+                <img src="{% static 'Assets/Images/Testimonial.jpg' %}">
+            </div>
+        </div>
+    </section> -->
+
+    <!--Review Form-->
+    <div class="container">
+        <div class="review-container">
+            <h1>Enter Your Review</h1>
+            <form method="post" action="">
+                {% csrf_token %}
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required><br><br>
+
+                <label for="rating">Rating:</label>
+                <select id="rating" name="rating" required>
+                    <option value="">-- Select Rating --</option>
+                    <option value="1">★☆☆☆☆</option>
+                    <option value="2">★★☆☆☆</option>
+                    <option value="3">★★★☆☆</option>
+                    <option value="4">★★★★☆</option>
+                    <option value="5">★★★★★</option>
+                </select><br><br>
+
+                <label for="content">Review:</label><br>
+                <textarea id="content" name="content" rows="4" cols="50" required></textarea><br><br>
+
+                <button type="submit">Submit Review</button>
+            </form>
+        </div>{% if reviews %}
+        <div class="review-screen">
+            <h2>Explore our Happy Customer</h2>
+            <br>
+            <ul>
+                {% for review in reviews %}
+                <li>
+                    <b>{{ review.name }}</b> -
+                    {% if review.rating == 1 %}
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    {% elif review.rating == 2 %}
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    {% elif review.rating == 3 %}
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    {% elif review.rating == 4 %}
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: grey"></i>
+                    {% else %}
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    <i class="fas fa-star" style="color: #FFD700"></i>
+                    {% endif %}
+                    <br>
+                    {{ review.content }}
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <p>No reviews yet. Be the first to leave one!</p>
+            {% endif %}
+        </div>
+    </div>
+
+    <br>
+
+    <!--Footer section-->
+    <section class="footer">
+        <div class="footer-info">
+            <p>Contact Information:</p>
+            <p><i class="fas fa-map-marker"></i>Shwet Multimetals,<br>
+                No.41, 3rd Floor, Mani Bhavan,<br>
+                19th Pathak wadi, Lohar Chawl,<br>
+                Mumbai, Maharashtra 400002.</p>
+            <p><i class="fas fa-envelope"></i> Sagarshet85@gmail.com</p>
+            <p><i class="fas fa-phone"></i> 9769415003</p>
+        </div>
+    </section>
+    <div class="h4">
+        &copy; 2024 All rights are reserved to Shwet Multimetals Company.<br>
+        Developed and Maintained by:<br>
+        Pakhre Roshan<br>
+        Viraj Matekar
+    </div>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(document).ready(function () {
+        // Toggle dropdown menu when clicking on Account
+        $('.dropdown-toggle').click(function () {
+            $(this).next('.dropdown-menu').slideToggle();
+        });
+    });
+</script>
+
+</html>
